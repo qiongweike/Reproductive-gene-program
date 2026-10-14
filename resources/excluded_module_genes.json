@@ -1,0 +1,86 @@
+{
+ "initiation": [
+  "ULK1",
+  "ULK2",
+  "ATG13",
+  "RB1CC1",
+  "ATG101"
+ ],
+ "formation": [
+  "BECN1",
+  "PIK3C3",
+  "PIK3R4",
+  "ATG14",
+  "ATG5",
+  "ATG7",
+  "ATG12",
+  "ATG16L1",
+  "WIPI2",
+  "ATG2A",
+  "ATG9A",
+  "MAP1LC3B",
+  "GABARAP"
+ ],
+ "fusion_SNARE": [
+  "STX17",
+  "SNAP29",
+  "SNAP47",
+  "VAMP7",
+  "VAMP8",
+  "YKT6",
+  "STX7"
+ ],
+ "fusion_tether": [
+  "VPS11",
+  "VPS16",
+  "VPS18",
+  "VPS33A",
+  "VPS39",
+  "VPS41",
+  "RAB7A",
+  "PLEKHM1",
+  "EPG5"
+ ],
+ "acidification": [
+  "ATP6V1A",
+  "ATP6V1B2",
+  "ATP6V1C1",
+  "ATP6V1D",
+  "ATP6V1E1",
+  "ATP6V1F",
+  "ATP6V1G1",
+  "ATP6V1H",
+  "ATP6V0C",
+  "ATP6V0D1"
+ ],
+ "degradation": [
+  "CTSB",
+  "CTSD",
+  "CTSL",
+  "CTSZ"
+ ],
+ "iron_handling": [
+  "NCOA4",
+  "FTH1",
+  "FTL",
+  "TFRC",
+  "SLC40A1",
+  "HMOX1"
+ ],
+ "antioxidant": [
+  "GPX4",
+  "SLC7A11",
+  "SLC3A2",
+  "GCLC",
+  "GCLM",
+  "AIFM2",
+  "GCH1",
+  "DHODH"
+ ],
+ "lipid_susceptibility": [
+  "ACSL4",
+  "LPCAT3",
+  "ALOX15",
+  "POR"
+ ]
+}
