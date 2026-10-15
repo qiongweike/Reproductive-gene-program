@@ -4,23 +4,6 @@ Analysis code for
 
 A recurrent gene program linking FGFR3 to negative regulators in human early spermatogonia.
 
-
-## Analysis steps
-
-The folders are listed in run order.
-
-| Folder | Analysis |
-|---|---|
-| `preprocessing` | QC, doublet calls and cell identities for the five single-cell studies; the normal spermatogonial reference (9,080 cells, 30 donors) and its U/T/D states; the adult testis atlas; the two Slide-seq arrays |
-| `programs` | Per-donor NMF of spermatogonia in the seven discovery donors (ranks 6–9, ten starts), recurrent meta-programs MP1–MP3, gene-identity harmonization and program scores |
-| `coordination` | Within-state coordination of program members against expression-matched gene sets, removal of published state markers, spermatocyte and transcript-background controls, GO/Reactome enrichment |
-| `trajectory` | Slingshot and Palantir trajectories on program-independent features, member dynamics along lineages, Hotspot local correlations |
-| `clinical` | Captured state composition and fixed-background program scores in OA, NOA and cryptozoospermia donors |
-| `communication` | CellChat and NicheNet ligand analysis, GRNBoost2/cisTarget regulons, recovery of motif-supported MP3 edges, regulon activity and dynamics |
-| `spatial` | RCTD deconvolution, BANKSY clusters, spatial autocorrelation, neighbourhood analyses and measurement coverage in two normal Slide-seq arrays |
-| `knockout` | scTenifoldNet networks and scTenifoldKnk virtual knockouts compared with matched non-member controls |
-| `figures` | One script per figure, plus the shared theme |
-
 ## Repository layout
 
 ```
@@ -38,20 +21,6 @@ knockout/        01_resolve_identities.py … 09_compute_response_pca.R
 figures/         figure1.R … figure7.R, supplementary_figure1.R … supplementary_figure3.R, theme.R
 ```
 
-Within each folder the scripts are numbered in run order; files without a number are helpers imported by the others. The candidate set and the nine modules are scored as fixed references and are kept out of trajectory features, background gene pools and knockout controls.
-
-Scripts are run from the repository root. Data, third-party code and outputs live under a project root given by the environment variable `SPG_ROOT` (default: the repository root):
-
-```
-$SPG_ROOT/
-  data/raw/         GEO supplementary files, one folder per accession, and Human.7z
-  data/metadata/    GEO family SOFT files and author annotation tables
-  data/external/    reference resources (below)
-  vendor/           third-party code at fixed commits (below)
-  data/processed/   written by preprocessing
-  results/          written by the analysis steps, one folder per step; figures in results/figures/
-```
-
 ## Data
 
 ### Single-cell and spatial data
@@ -67,22 +36,6 @@ $SPG_ROOT/
 | [HaiqiChenLab/Slideseq_SSC_Niche](https://github.com/HaiqiChenLab/Slideseq_SSC_Niche) | Chen et al., *Cell Rep* 2021; Rajachandran et al., *Cell Rep* 2023 | Normal human Slide-seq arrays Puck5 and Puck6 | `Human.7z` → `data/raw/` |
 
 Files keep their GEO names. For GSE124263, GSE153947 and GSE254315 the scripts find each sample's files through the GEO family SOFT file.
-
-### Reference resources (`data/external/`)
-
-| File | Source |
-|---|---|
-| `hgnc_complete_set.txt` | HGNC complete set ([download](https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt)), retrieved 5 October 2026 |
-| `Reactome/ReactomePathways.gmt` | [Reactome](https://reactome.org/download/current/ReactomePathways.gmt.zip), file dated 21 June 2026 |
-| `nichenet/ligand_target_matrix_nsga2r_final.rds`, `nichenet/lr_network_human_21122021.rds` | NicheNet v2 networks, Zenodo [10.5281/zenodo.7074291](https://doi.org/10.5281/zenodo.7074291) |
-| `cistarget/hg38_10kbp_up_10kbp_down_full_tx_v10_clust.genes_vs_motifs.rankings.feather`, `cistarget/hg38_500bp_up_100bp_down_full_tx_v10_clust.genes_vs_motifs.rankings.feather` | [cisTarget databases](https://resources.aertslab.org/cistarget/databases/homo_sapiens/hg38/refseq_r80/mc_v10_clust/gene_based/) |
-| `cistarget/motifs-v10nr_clust-nr.hgnc-m0.001-o0.0.tbl` | [cisTarget motif annotations](https://resources.aertslab.org/cistarget/motif2tf/) |
-| `cistarget/allTFs_hg38.txt` | [cisTarget TF list](https://resources.aertslab.org/cistarget/tf_lists/) |
-| `prior_gene_lists/guo2017_clusterA.txt` | Guo et al., *Cell Stem Cell* 2017, Table S3, sheet Gene_Clusters, cluster A (373 genes, one per line) |
-| `prior_gene_lists/guo2018_state0_enriched.txt` | Guo et al., *Cell Res* 2018, Table S5, group 1 (490 genes, one per line) |
-| `prior_gene_lists/bush2024_state_markers.tsv` | Bush et al., *Cells* 2024, Supplementary Table 4; columns `gene` and `state` (cell type or spermatogonial state) |
-
-GO annotations come from the Bioconductor packages org.Hs.eg.db and GO.db, and the CellChat database from the CellChat package.
 
 ### Third-party code (`vendor/`)
 
@@ -234,23 +187,6 @@ for f in figure1 figure2 figure3 figure4 figure5 figure6 figure7 \
 ```
 
 The NMF fits, RCTD fits, network builds and knockouts are independent jobs and can run in parallel.
-
-## Figures
-
-Each script writes `results/figures/<name>.pdf` and a 300-dpi PNG.
-
-| Figure | Script | Results used |
-|---|---|---|
-| Figure 1 | `figures/figure1.R` | preprocessing (atlas), programs, coordination, trajectory |
-| Figure 2 | `figures/figure2.R` | programs, coordination, trajectory (Hotspot) |
-| Figure 3 | `figures/figure3.R` | programs, trajectory |
-| Figure 4 | `figures/figure4.R` | programs, coordination, clinical, communication (regulons) |
-| Figure 5 | `figures/figure5.R` | communication (CellChat, NicheNet, regulons), NicheNet prior |
-| Figure 6 | `figures/figure6.R` | spatial |
-| Figure 7 | `figures/figure7.R` | knockout |
-| Supplementary Figure 1 | `figures/supplementary_figure1.R` | preprocessing (atlas), coordination |
-| Supplementary Figure 2 | `figures/supplementary_figure2.R` | trajectory, communication (regulon dynamics) |
-| Supplementary Figure 3 | `figures/supplementary_figure3.R` | knockout |
 
 ## Contact
 
