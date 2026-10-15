@@ -190,4 +190,4 @@ The NMF fits, RCTD fits, network builds and knockouts are independent jobs and c
 
 ## Contact
 
-Zhiling Li (stlizhiling@126.com), Reproductive Center, The First Affiliated Hospital of Shantou University Medical College, Shantou, China.
+Zhiling Li (zlli1@stu.edu.cn), Reproductive Center, The First Affiliated Hospital of Shantou University Medical College, Shantou, China.
