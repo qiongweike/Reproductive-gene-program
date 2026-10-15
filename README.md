@@ -2,7 +2,7 @@
 
 Analysis code for
 
-> Ke Q, He R, Liu L, Gao Y, Li Z. A recurrent gene program linking FGFR3 to negative regulators in human early spermatogonia. Submitted to *Reproductive Biology and Endocrinology*.
+A recurrent gene program linking FGFR3 to negative regulators in human early spermatogonia.
 
 Starting from public single-cell RNA-seq and Slide-seq data, the scripts carry out every analysis in the paper and draw Figures 1–7 and Supplementary Figures 1–3.
 
